@@ -1,6 +1,5 @@
+import { cn } from "@nextui-org/react";
 import * as React from "react";
-
-import { cn } from "@/lib/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,

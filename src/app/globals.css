@@ -144,7 +144,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 }
 
 
-h2, h3 {
+h2, h3, div {
   scroll-margin-top: 16px;
 }
 

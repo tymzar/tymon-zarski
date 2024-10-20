@@ -1,12 +1,12 @@
 "use client";
 
-import { BLUR_FADE_DELAY } from "@/app/page";
 import BlurFade from "./magicui/blur-fade";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button, Chip, Input, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { DATA } from "@/data/resume";
+import { BLUR_FADE_DELAY } from "./magicui/blur-fade-text";
 
 type ContactFormInputs = {
   name: string;
@@ -18,7 +18,6 @@ export function Contact() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<ContactFormInputs>();
 
@@ -42,9 +41,9 @@ export function Contact() {
     <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
       <BlurFade delay={BLUR_FADE_DELAY * 16}>
         <div className="space-y-3">
-          <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+          <Chip id="tc-contact" color="primary" variant="shadow">
             Contact
-          </div>
+          </Chip>
           <h2
             id="tc-contact"
             className="text-3xl font-bold tracking-tighter sm:text-5xl"
@@ -63,7 +62,6 @@ export function Contact() {
                   label="Name"
                   isRequired
                   {...register("name", { required: true })}
-                  //   errorMessage={errors.name && "Name is required"}
                   isInvalid={!!errors.name}
                 />
                 <Input
@@ -71,7 +69,6 @@ export function Contact() {
                   label="Topic"
                   isRequired
                   {...register("topic", { required: true })}
-                  //   errorMessage={errors.topic && "Topic is required"}
                   isInvalid={!!errors.topic}
                 />
               </div>
@@ -80,7 +77,6 @@ export function Contact() {
                 className="w-full"
                 isRequired
                 {...register("message", { required: true })}
-                // errorMessage={errors.message && "Message is required"}
                 isInvalid={!!errors.message}
               />
               <Button fullWidth color="primary" type="submit" variant="shadow">

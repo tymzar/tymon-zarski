@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@nextui-org/react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useMemo } from "react";
 
@@ -17,6 +17,9 @@ interface BlurFadeTextProps {
   yOffset?: number;
   animateByCharacter?: boolean;
 }
+
+export const BLUR_FADE_DELAY = 0.04;
+
 const BlurFadeText = ({
   text,
   className,

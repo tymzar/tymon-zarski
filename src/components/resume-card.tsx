@@ -1,9 +1,7 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Avatar, Chip, cn } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
@@ -46,14 +44,15 @@ export const ResumeCard = ({
     >
       <Card className="flex">
         <div className="flex-none">
-          <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
-            <AvatarImage
-              src={logoUrl}
-              alt={altText}
-              className="object-contain"
-            />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
-          </Avatar>
+          <Avatar
+            isBordered
+            color="primary"
+            classNames={{
+              img: "object-contain",
+            }}
+            src={logoUrl}
+            alt={altText}
+          />
         </div>
         <div className="flex-grow ml-4 items-center flex-col group">
           <CardHeader>
@@ -63,13 +62,15 @@ export const ResumeCard = ({
                 {badges && (
                   <span className="inline-flex gap-x-1">
                     {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
+                      <Chip
+                        variant="bordered"
+                        size="sm"
+                        color="primary"
                         className="align-middle text-xs"
                         key={index}
                       >
                         {badge}
-                      </Badge>
+                      </Chip>
                     ))}
                   </span>
                 )}
@@ -84,7 +85,13 @@ export const ResumeCard = ({
                 {period}
               </div>
             </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+            {subtitle && (
+              <div
+                className={cn("font-sans text-xs", badges ? "mt-[2px]" : "")}
+              >
+                {subtitle}
+              </div>
+            )}
           </CardHeader>
           {description && (
             <motion.div

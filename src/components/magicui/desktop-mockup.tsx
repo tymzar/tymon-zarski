@@ -130,7 +130,7 @@ export function DesktopMockup({
         <image
           href={src}
           width="1200"
-          height="700"
+          height="750"
           x="1"
           y="52"
           preserveAspectRatio="xMidYMid slice"

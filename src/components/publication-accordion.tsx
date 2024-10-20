@@ -1,20 +1,20 @@
 "use client";
 
-import { Accordion, AccordionItem, Image } from "@nextui-org/react";
+import { Accordion, AccordionItem, Button, cn, Image } from "@nextui-org/react";
 import Markdown from "react-markdown";
 
 type PublicationAccordionProps = {
   publications: Array<Publication>;
 };
 
-type Publication = {
+export type Publication = {
   title: string;
   graphicalAbstractSrc: string;
   authors: string;
-  status: string;
   date: string;
   publisher: string;
   abstract: string;
+  href?: string;
 };
 
 export function PublicationAccordion({
@@ -31,27 +31,53 @@ export function PublicationAccordion({
           title: "font-normal text-small",
         }}
       >
-        {publications.map((publication, id) => (
-          <AccordionItem
-            key={publication.title}
-            title={publication.title}
-            startContent={<Image src={publication.publisher} width="50px" />}
-          >
-            <Image
-              src={publication.graphicalAbstractSrc}
-              alt={publication.title}
-              width="100%"
-            />
-            <div className="flex justify-between">
-              <p>{publication.authors}</p>
-              <p>{publication.date}</p>
-            </div>
-            <h5 className="text-small font-bold mt-3">Abstract</h5>
-            <Markdown className="text-small text-justify">
-              {publication.abstract}
-            </Markdown>
-          </AccordionItem>
-        ))}
+        {publications.map(
+          ({
+            title,
+            publisher,
+            graphicalAbstractSrc,
+            authors,
+            date,
+            abstract,
+            href,
+          }) => (
+            <AccordionItem
+              key={title}
+              title={title}
+              // isDisabled
+              startContent={
+                <div className={cn([!Boolean(href) ? "blur-sm" : ""])}>
+                  <Image
+                    src={publisher}
+                    alt={`publisher-${title}`}
+                    width="50px"
+                  />
+                </div>
+              }
+            >
+              <Image src={graphicalAbstractSrc} alt={title} width="100%" />
+              <div className="flex justify-between">
+                <p>{authors}</p>
+                <p>{date}</p>
+              </div>
+              <h5 className="text-small font-bold mt-3">Abstract</h5>
+              <Markdown className="text-small text-justify">
+                {abstract}
+              </Markdown>
+              <div className="flex justify-end mt-2">
+                <Button
+                  href={href}
+                  target="_blank"
+                  size="sm"
+                  isDisabled={!Boolean(href)}
+                  className="mb-1"
+                >
+                  {Boolean(href) ? "Read more" : "Under review"}
+                </Button>
+              </div>
+            </AccordionItem>
+          )
+        )}
       </Accordion>
     </div>
   );

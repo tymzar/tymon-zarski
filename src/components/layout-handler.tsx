@@ -20,6 +20,7 @@ export function LayoutHandler({ children }: MainContentProps) {
 
   useEffect(() => {
     setTheme(isDarkMode ? "dark" : "light");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -32,7 +33,9 @@ export function LayoutHandler({ children }: MainContentProps) {
         </div>
       )}
       {
-        <div className={cn(matches ? "col-span-5" : "col-span-8")}>
+        <div
+          className={cn(matches ? "col-span-5" : "col-span-8", "py-8 sm:py-24")}
+        >
           {children}
         </div>
       }

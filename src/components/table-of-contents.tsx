@@ -14,6 +14,7 @@ import { useIntersectionObserver } from "@/hooks/use-heading-observer";
 import { DATA } from "@/data/resume";
 
 import { Icon } from "@iconify/react";
+import { ModeToggle } from "./mode-toggle";
 
 function headingToSidebarItem(heading: Array<HeadingItem>): Array<SidebarItem> {
   return heading.flatMap((item) => {
@@ -30,9 +31,9 @@ export function TableOfContents() {
   const [activeHeading] = useIntersectionObserver();
 
   return (
-    <nav className="h-dvh fixed max-w-[inherit] w-full top-0 border-r-small border-divider">
-      <div className="h-full p-6 mt-8">
-        <div className="flex items-center justify-between gap-2 px-2 mt-10">
+    <nav className="h-dvh max-h-dvh fixed max-w-[inherit] w-full top-0 border-r-small border-divider">
+      <div className="relative flex h-full flex-1 flex-col border-r-small border-divider p-6">
+        <div className="flex items-center justify-between gap-2 px-2 mt-10 pt-8">
           <div className="flex items-center justify-center rounded-full">
             <Avatar isBordered color="primary" src={DATA.avatarUrl} size="lg" />
           </div>
@@ -46,7 +47,7 @@ export function TableOfContents() {
                 <social.icon className="size-5" />
               </Link>
             ))}
-          <Button
+          {/* <Button
             className="shadow-lg"
             radius="full"
             variant="shadow"
@@ -60,8 +61,9 @@ export function TableOfContents() {
             }
           >
             CV
-          </Button>
+          </Button> */}
         </div>
+
         <ScrollShadow className="-mr-6 h-full max-h-full py-[5vh] pr-6">
           <Sidebar
             selectedKeys={[activeHeading]}
@@ -94,6 +96,12 @@ export function TableOfContents() {
             </CardFooter>
           </Card>
         </ScrollShadow>
+
+        <Spacer y={8} />
+
+        <div className="mt-auto flex flex-col">
+          <ModeToggle />
+        </div>
       </div>
     </nav>
   );

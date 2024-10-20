@@ -1,16 +1,10 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { NextUIProvider } from "@nextui-org/react";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn, NextUIProvider } from "@nextui-org/react";
 import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { LayoutHandler } from "@/components/layout-handler";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
-import { useTheme } from "next-themes";
-import { useDarkMode } from "usehooks-ts";
-import { useEffect } from "react";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -60,17 +54,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background" suppressHydrationWarning>
+      <head>
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-48x48.png"
+          sizes="48x48"
+        />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+        <link rel="shortcut icon" href="./favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="Tymon's Portfolio" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-5xl mx-auto py-8 sm:py-24 px-6",
+          "min-h-screen bg-background font-sans antialiased max-w-5xl mx-auto px-6",
           fontSans.variable
         )}
       >
         <NextUIProvider>
           <ThemeProvider attribute="class" defaultTheme="light">
-            <TooltipProvider delayDuration={0}>
-              <LayoutHandler>{children}</LayoutHandler>
-            </TooltipProvider>
+            <LayoutHandler>{children}</LayoutHandler>
           </ThemeProvider>
         </NextUIProvider>
       </body>
