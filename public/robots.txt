@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tymonzar.ski
+
+# Sitemaps
+Sitemap: https://tymonzar.ski/sitemap.xml
