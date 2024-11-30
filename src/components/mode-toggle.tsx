@@ -15,6 +15,7 @@ export function ModeToggle() {
     <Button
       variant="light"
       type="button"
+      aria-label="mode-dark-toggle"
       isIconOnly
       className="px-2"
       onClick={() => {

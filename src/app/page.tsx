@@ -11,11 +11,18 @@ import {
   PublicationAccordion,
 } from "@/components/publication-accordion";
 import { ResumeCard } from "@/components/resume-card";
-import { Skills } from "@/components/skills";
 import { DATA } from "@/data/resume";
 import { Chip } from "@nextui-org/react";
+import dynamic from "next/dynamic";
 
 import Markdown from "react-markdown";
+
+const ClientSkillsComponent = dynamic(
+  () => import("@/components/skills").then((mod) => mod.Skills),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
   return (
@@ -117,7 +124,7 @@ export default function Page() {
               Skills
             </h2>
           </BlurFade>
-          <Skills />
+          <ClientSkillsComponent />
           <div className="flex flex-wrap gap-1">
             {DATA.skills.map((skill, id) => (
               <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>

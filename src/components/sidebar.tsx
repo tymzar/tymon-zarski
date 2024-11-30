@@ -201,6 +201,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           </ListboxItem>
         );
       },
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [isCompact, hideEndContent, iconClassName, items]
     );
 
@@ -267,6 +269,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           </ListboxItem>
         );
       },
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [isCompact, hideEndContent, iconClassName, itemClasses?.base]
     );
 
@@ -276,6 +280,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         ref={ref}
         hideSelectedIcon
         as="nav"
+        aria-label="Navigation sidebar"
         className={cn("list-none", className)}
         classNames={{
           ...classNames,

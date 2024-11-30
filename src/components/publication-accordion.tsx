@@ -1,6 +1,8 @@
 "use client";
 
 import { Accordion, AccordionItem, Button, cn, Image } from "@nextui-org/react";
+import OptimizedImage from "next-export-optimize-images/image";
+
 import Markdown from "react-markdown";
 
 type PublicationAccordionProps = {
@@ -48,14 +50,21 @@ export function PublicationAccordion({
               startContent={
                 <div className={cn([!Boolean(href) ? "blur-sm" : ""])}>
                   <Image
+                    as={OptimizedImage}
                     src={publisher}
                     alt={`publisher-${title}`}
-                    width="50px"
+                    width={50}
+                    height={50}
                   />
                 </div>
               }
             >
-              <Image src={graphicalAbstractSrc} alt={title} width="100%" />
+              <Image
+                as={OptimizedImage}
+                src={graphicalAbstractSrc}
+                alt={title}
+                width="100%"
+              />
               <div className="flex justify-between">
                 <p>{authors}</p>
                 <p>{date}</p>

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import OptimizedImage from "next-export-optimize-images/image";
 
 interface ResumeCardProps {
   logoUrl: string;
@@ -45,10 +46,15 @@ export const ResumeCard = ({
       <Card className="flex">
         <div className="flex-none">
           <Avatar
+            ImgComponent={OptimizedImage}
             isBordered
             color="primary"
             classNames={{
               img: "object-contain",
+            }}
+            imgProps={{
+              width: 40,
+              height: 40,
             }}
             src={logoUrl}
             alt={altText}

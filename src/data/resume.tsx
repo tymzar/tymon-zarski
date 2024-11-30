@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 
 export const DATA = {
   name: "Tymon Żarski",
@@ -10,7 +10,7 @@ export const DATA = {
     "Software Engineer, AI Enthusiast. Passionate about building innovative solutions that drive business growth, enhance user experiences and scientific research.",
   summary:
     "Software engineer with a focus on **front-end** and **NLP** systems development. I have a solid command of **TypeScript**, **JavaScript**, **Python**, and **React**, and application of these skills in creating advanced web applications, language validation systems and microservices architectures. My work includes developing [mKanon](https://www.mbank.pl/o-nas/mkanon/) system at mBank S.A., ensuring efficiency and innovation. As a **executive board member** of the Innovative Information Technology Science Club Delta, I have developed strong leadership and teamwork abilities in both individual and collaborative projects.",
-  avatarUrl: "./me.png",
+  avatarUrl: "/me.png",
   skills: [
     "Python",
     "Typescript",
@@ -150,8 +150,8 @@ export const DATA = {
             "Data security is a critical concern for internet users, primarily as more people rely on social networks and online tools daily. Despite the convenience, many users are unaware of the risks posed to their sensitive and personal data. This study addresses this issue by presenting a comprehensive solution to prevent personal data leakage using online tools. We developed a solution that enhances user privacy by identifying and anonymizing named entity classes representing sensitive data while maintaining the original context by swapping source entities for functional data. Our approach utilizes natural language processing methods, combining machine learning tools such as **MITIE** and **spaCy** with rule-based text analysis. We employed regular expressions and large language models to anonymize text, preserving its context for further processing or enabling restoration to the original form after transformations. The results demonstrated the effectiveness of our custom-trained models, achieving an **F1-score of 0.8292**. Additionally, the proposed algorithms successfully preserved context in approximately **93.23% of test cases**, indicating a promising solution for secure data handling in online environments.",
           authors: "Tymon Żarski, Artur Janicki",
           date: "20/10/2024",
-          publisher: "./mdpi.jpg",
-          graphicalAbstractSrc: "./privacy-ga.png",
+          publisher: "/mdpi.jpg",
+          graphicalAbstractSrc: "/privacy-ga.png",
         },
       ],
     },
@@ -181,8 +181,8 @@ export const DATA = {
         },
       ],
       mockups: {
-        mobile: "./projects/portfolio-430x880.png",
-        desktop: "./projects/portfolio-1200x750.png",
+        mobile: "/portfolio-430x880.png",
+        desktop: "/portfolio-1200x750.png",
       },
     },
     {
@@ -200,13 +200,13 @@ export const DATA = {
         },
       ],
       mockups: {
-        mobile: "./projects/emkids-430x880.png",
-        desktop: "./projects/emkids-1200x750.png",
+        mobile: "/emkids-430x880.png",
+        desktop: "/emkids-1200x750.png",
       },
     },
     {
       title: "Zielono Mi",
-      href: "wiazankiwience.pl",
+      href: "",
       active: true,
       description:
         "Zielono Mi is a e-commerce store for a florist and funeral wreaths. The website is built with **Next.js**, **TailwindCSS**, **DecapCMS**, and **Shopify**. It is a fully **SSR** website with **SEO** optimization which in combination with **Shopify** allows for easy management of the store.",
@@ -223,13 +223,13 @@ export const DATA = {
         {
           type: "Website",
           disabled: true,
-          href: "https://wiazankiwience.pl/",
+          href: "",
           icon: <Icons.globe className="size-4" />,
         },
       ],
       mockups: {
-        mobile: "./projects/wiazankiwience-430x880.png",
-        desktop: "./projects/wiazankiwience-1200x750.png",
+        mobile: "/wiazankiwience-430x880.png",
+        desktop: "/wiazankiwience-1200x750.png",
       },
     },
   ],

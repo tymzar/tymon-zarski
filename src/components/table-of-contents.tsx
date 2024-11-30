@@ -1,3 +1,5 @@
+"use client";
+
 import { HeadingItem, useHeadingData } from "@/hooks/use-heading-data";
 import {
   Avatar,
@@ -12,8 +14,7 @@ import {
 import Sidebar, { SidebarItem } from "./sidebar";
 import { useIntersectionObserver } from "@/hooks/use-heading-observer";
 import { DATA } from "@/data/resume";
-
-import { Icon } from "@iconify/react";
+import OptimizedImage from "next-export-optimize-images/image";
 import { ModeToggle } from "./mode-toggle";
 
 function headingToSidebarItem(heading: Array<HeadingItem>): Array<SidebarItem> {
@@ -35,7 +36,18 @@ export function TableOfContents() {
       <div className="relative flex h-full flex-1 flex-col border-r-small border-divider p-6">
         <div className="flex items-center justify-between gap-2 px-2 mt-10 pt-8">
           <div className="flex items-center justify-center rounded-full">
-            <Avatar isBordered color="primary" src={DATA.avatarUrl} size="lg" />
+            <Avatar
+              ImgComponent={OptimizedImage}
+              alt="Tymon Lesław Żarski avatar"
+              imgProps={{
+                width: 56,
+                height: 56,
+              }}
+              isBordered
+              color="primary"
+              src={DATA.avatarUrl}
+              size="lg"
+            />
           </div>
           <span className="text-body font-bold">Tymon Lesław Żarski</span>
         </div>
@@ -43,25 +55,15 @@ export function TableOfContents() {
           {Object.entries(DATA.contact.social)
             .filter(([_, social]) => social.navbar)
             .map(([name, social]) => (
-              <Link key={name} href={social.url} target="_blank">
+              <Link
+                key={name}
+                aria-label={`Visit my profile on ${name}`}
+                href={social.url}
+                target="_blank"
+              >
                 <social.icon className="size-5" />
               </Link>
             ))}
-          {/* <Button
-            className="shadow-lg"
-            radius="full"
-            variant="shadow"
-            color="primary"
-            size="sm"
-            as={Link}
-            href="./Tymon_Żarski_CV_EN.pdf"
-            download
-            startContent={
-              <Icon fontSize={20} icon="material-symbols:download" />
-            }
-          >
-            CV
-          </Button> */}
         </div>
 
         <ScrollShadow className="-mr-6 h-full max-h-full py-[5vh] pr-6">

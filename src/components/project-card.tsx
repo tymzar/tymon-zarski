@@ -50,11 +50,18 @@ export function ProjectCard({
           </div>
           <Link
             href={href || "#"}
+            aria-label={`Visit my project ${title} on ${href}`}
             className={cn("block cursor-pointer", className)}
           >
             <div className="relative w-full mt-2">
-              <DesktopMockup url={href} src={desktop} className="size-full" />
+              <DesktopMockup
+                url={href}
+                src={desktop}
+                title={title}
+                className="size-full"
+              />
               <MobileMockup
+                title={title}
                 src={mobile}
                 className="absolute top-5 right-1 h-full w-auto"
               />
