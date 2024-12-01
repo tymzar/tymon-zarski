@@ -1,5 +1,4 @@
 import { SVGProps } from "react";
-import OptimizedImage from "next-export-optimize-images/image";
 
 export interface SafariProps extends SVGProps<SVGSVGElement> {
   url?: string;

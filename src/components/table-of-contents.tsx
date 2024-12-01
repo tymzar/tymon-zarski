@@ -42,6 +42,8 @@ export function TableOfContents() {
               imgProps={{
                 width: 56,
                 height: 56,
+                // @ts-expect-error placeholder is not in the types
+                placeholder: "blur",
               }}
               isBordered
               color="primary"

@@ -55,6 +55,8 @@ export const ResumeCard = ({
             imgProps={{
               width: 40,
               height: 40,
+              // @ts-expect-error placeholder is not in the types
+              placeholder: "blur",
             }}
             src={logoUrl}
             alt={altText}
