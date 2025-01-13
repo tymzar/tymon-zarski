@@ -25,6 +25,5 @@ export default withExportImages(
     },
     compress: true,
     reactStrictMode: true,
-    output: "export",
   })
 );
