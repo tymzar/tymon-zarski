@@ -1,0 +1,65 @@
+---
+title: 'Introducing Transpotted: Innovating Urban Navigation and Safety'
+date: '2025-01-13'
+project: 'TranSpotted'
+keywords: "Transpotted, urban navigation, public transportation safety, real-time reporting, Warsaw transport, smart city solutions, public safety, public transport app"
+description: 'Transpotted is a groundbreaking urban navigation platform that enhances public transportation safety in Warsaw. By combining real-time safety reporting, customizable navigation, and robust data aggregation, Transpotted empowers commuters to stay informed and secure. Discover how this innovative tool improves urban mobility through community engagement and cutting-edge technology.'
+part: 1
+category: 'project'
+coverImage: '/transpotted-system-design.png'
+---
+
+<h2 className="mt-2 mb-1" id="tc-info">What is Transpotted?</h2>
+Transpotted is an innovative and flexible approach to urban navigation that leverages community engagement to enhance safety standards in public transportation.
+
+<h2 className="mt-2 mb-1" id="tc-inspo">Inspiration Behind Transpotted</h2>
+The idea for this project was born out of the monopolization of navigation apps like "Jak Dojadę" and the lack of systems that could alert passengers about issues such as drunk individuals, homeless people, or ticket inspectors. Transpotted seeks to bridge this gap by providing a system that not only improves navigation but also enhances safety and allows for greater configurability.
+
+<h2 className="mt-2 mb-1" id="tc-golas">The Goal of Transpotted</h2>
+
+Transpotted is designed to address key issues in urban transportation. It introduces real-time reporting of potential safety concerns in public transport, such as the presence of drunk individuals, homeless people, or ticket inspectors. By doing so, it aims to create a safer and more comfortable experience for Warsaw’s public transport users.
+
+### Key Goals:
+- Enable real-time reporting of safety-related incidents.
+- Provide detailed and customizable navigation options.
+- Monitor delays in buses and trams.
+- Aggregate data for optimizing navigation systems, detecting anomalies, and supporting future research.
+
+<h2 className="mt-2 mb-1" id="tc-sci-golas">Scientific Goals</h2>
+One of the key aspirations of Transpotted is to create a robust data model based on Slowly Changing Dimensions (Type 2 tables). Over time, this aggregated data will become a valuable dataset for researchers aiming to optimize public transport routes and schedules. Additionally, the navigation graph developed through this project will be made available for advanced navigation insights and research purposes.
+
+Stay tuned for updates as Transpotted continues to evolve and make public transport in Warsaw safer, smarter, and more user-friendly!
+
+<h2 className="mt-2 mb-1" id="tc-key-features">Key Features</h2>
+Transpotted will allow users to:
+- Report incidents and events as they happen, creating a real-time feedback loop for public safety.
+- Access customizable navigation options that provide detailed guidance.
+- View up-to-date data on public transport locations and statuses.
+- Receive alerts about reported events, enhancing overall safety and awareness.
+
+<h2 className="mt-2 mb-1" id="tc-tech">Technology and Architecture</h2>
+
+Real-time data processing is a cornerstone of Transpotted. The application relies on the [Warsaw Public Transport API](https://api.um.warszawa.pl/), which provides updates on the positions of buses and trams every 10 seconds. This data is processed and displayed to ensure accuracy and reliability.
+
+The high-level system design for Transpotted is visualized below:
+
+![System Design](/transpotted-system-design.png)
+
+The project uses a robust technology stack to support its features:
+
+### Frontend:
+- **React** and **Next.js** for the user interface.
+- **OpenStreetMaps** for mapping and navigation.
+- **TailwindCSS** and **NextUI** for styling and design components.
+
+### Backend:
+- **Python** with frameworks such as **Pydantic**, **FastAPI**, and **SQLModel**.
+- Machine learning libraries: **TensorFlow** and **PyTorch**.
+- Unit testing: **PyTest**.
+
+### Databases:
+- **PostgreSQL** for relational data.
+- **Neo4j** for graph-based navigation.
+
+<h2 className="mt-2 mb-1" id="tc-target">Target Audience and Benefits</h2>
+Transpotted is tailored for the residents of Warsaw who are looking for a safer and more pleasant public transport experience. By using this solution, users gain access to information that is often unavailable, enabling them to avoid potential inconveniences and safety risks.

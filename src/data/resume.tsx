@@ -1,10 +1,11 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, Book } from "lucide-react";
 
 export const DATA = {
   name: "Tymon Żarski",
   initials: "TŻ",
-  url: "https://tymon-zar.ski",
+  nick: "tymzar",
+  url: "https://tymonzar.ski",
   location: "Warsaw, Poland",
   description:
     "Software Engineer, AI Enthusiast. Passionate about building innovative solutions that drive business growth, enhance user experiences and scientific research.",
@@ -43,7 +44,14 @@ export const DATA = {
     "Netlify",
     "Figma",
   ],
-  navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
+  navbar: [
+    { href: "/", icon: HomeIcon, label: "Home" },
+    {
+      href: "/blog",
+      label: "Blog",
+      icon: Book,
+    },
+  ],
   contact: {
     email: "tymon.zarski@gmail.com",
     social: {
@@ -123,7 +131,7 @@ export const DATA = {
     {
       company: "Onwelo",
       href: "https://onwelo.com",
-      badges: ["TypeScript", "Docker"],
+      badges: ["TypeScript"],
       location: "Warsaw, Poland",
       title: "Front-end Engineer Intern",
       logoUrl: "/onwelo.jpg",

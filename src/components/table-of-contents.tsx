@@ -16,6 +16,7 @@ import { useIntersectionObserver } from "@/hooks/use-heading-observer";
 import { DATA } from "@/data/resume";
 import OptimizedImage from "next-export-optimize-images/image";
 import { ModeToggle } from "./mode-toggle";
+import { usePathname } from "next/navigation";
 
 function headingToSidebarItem(heading: Array<HeadingItem>): Array<SidebarItem> {
   return heading.flatMap((item) => {
@@ -28,7 +29,8 @@ function headingToSidebarItem(heading: Array<HeadingItem>): Array<SidebarItem> {
 }
 
 export function TableOfContents() {
-  const { nestedHeadings } = useHeadingData();
+  const pathname = usePathname();
+  const { nestedHeadings } = useHeadingData(pathname);
   const [activeHeading] = useIntersectionObserver();
 
   return (

@@ -1,10 +1,11 @@
-"use client";
+"use server";
 
 import { Contact } from "@/components/contact";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText, {
   BLUR_FADE_DELAY,
 } from "@/components/magicui/blur-fade-text";
+import { PostCard } from "@/components/post-card";
 import { ProjectCard } from "@/components/project-card";
 import {
   Publication,
@@ -12,8 +13,10 @@ import {
 } from "@/components/publication-accordion";
 import { ResumeCard } from "@/components/resume-card";
 import { DATA } from "@/data/resume";
-import { Chip } from "@nextui-org/react";
+import { getSortedPostsData } from "@/utils/gatherPosts";
+import { Chip, ScrollShadow, Button } from "@nextui-org/react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 import Markdown from "react-markdown";
 
@@ -24,7 +27,9 @@ const ClientSkillsComponent = dynamic(
   }
 );
 
-export default function Page() {
+export default async function Page() {
+  const allPostsData = getSortedPostsData(3);
+
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-9">
       <section>
@@ -116,6 +121,37 @@ export default function Page() {
             </BlurFade>
           ))}
         </div>
+      </section>
+      <section className="flex flex-col gap-3">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+            <h2 id="tc-blog" className="text-xl font-bold">
+              Posts
+            </h2>
+          </BlurFade>
+          <ScrollShadow orientation="horizontal" size={15} hideScrollBar>
+            <div className="flex gap-3">
+              {allPostsData.map(({ id, ...restProps }) => (
+                <PostCard
+                  className="min-w-[350px] sm:min-w-[400px] h-[200px] sm:h-[250px]"
+                  key={id}
+                  id={id}
+                  {...restProps}
+                />
+              ))}
+            </div>
+          </ScrollShadow>
+        </div>
+        <Button
+          className="ml-auto"
+          href="/blog"
+          as={Link}
+          color="primary"
+          size="md"
+          radius="full"
+        >
+          View all posts
+        </Button>
       </section>
       <section>
         <div className="flex min-h-0 flex-col gap-y-3">

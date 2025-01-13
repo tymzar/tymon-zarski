@@ -18,7 +18,7 @@ export function ModeToggle() {
       aria-label="mode-dark-toggle"
       isIconOnly
       className="px-2"
-      onClick={() => {
+      onPress={() => {
         setTheme(theme === "dark" ? "light" : "dark");
         set(theme === "dark");
       }}

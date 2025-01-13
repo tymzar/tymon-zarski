@@ -221,9 +221,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           <ListboxItem
             {...item}
             key={item.key}
-            onClick={(event) => {
-              event.preventDefault();
-
+            as="div"
+            onPress={() => {
               document.querySelector(item.href!)?.scrollIntoView({
                 behavior: "smooth",
               });

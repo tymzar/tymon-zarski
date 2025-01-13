@@ -24,16 +24,17 @@ function getNestedHeadings(headingElements: NodeListOf<HTMLElement>) {
   return nestedHeadings;
 }
 
-export function useHeadingData() {
+export function useHeadingData(pathname: string) {
   const [nestedHeadings, setNestedHeadings] = useState<Array<HeadingItem>>([]);
 
+  // update on content change or url change
   useEffect(() => {
     const headingElements = document.querySelectorAll<HTMLElement>("h2");
 
     const newNestedHeadings = getNestedHeadings(headingElements);
 
     setNestedHeadings(newNestedHeadings);
-  }, []);
+  }, [pathname]);
 
   return { nestedHeadings };
 }
