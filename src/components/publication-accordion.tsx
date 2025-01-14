@@ -1,7 +1,8 @@
 "use client";
 
-import { Accordion, AccordionItem, Button, cn } from "@nextui-org/react";
+import { Accordion, AccordionItem, Button, Chip, cn } from "@nextui-org/react";
 import OptimizedImage from "next-export-optimize-images/image";
+import Link from "next/link";
 
 import Markdown from "react-markdown";
 
@@ -65,19 +66,24 @@ export function PublicationAccordion({
                 alt={title}
                 width={440}
                 height={211}
-                className="mx-auto mb-1"
+                className="mx-auto mb-1 w-full"
               />
-              <div className="flex justify-between">
-                <p>{authors}</p>
-                <p>{date}</p>
+              <div className="flex justify-between items-center">
+                <p className="text-medium">{authors}</p>
+                <Chip size="md" color="primary">
+                  {date}
+                </Chip>
               </div>
-              <h5 className="text-small font-bold mt-3">Abstract</h5>
+              <h5 className="text-medium font-bold mt-3">Abstract</h5>
               <Markdown className="text-small text-justify">
                 {abstract}
               </Markdown>
               <div className="flex justify-end mt-2">
                 <Button
+                  as={Link}
                   href={href}
+                  color="primary"
+                  variant="shadow"
                   target="_blank"
                   size="sm"
                   isDisabled={!Boolean(href)}
