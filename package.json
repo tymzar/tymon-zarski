@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build:analyze": "ANALYZE=true next build && next-export-optimize-images",
-    "build": "next build && next-export-optimize-images",
+    "build": "next build && next-export-optimize-images && pnpm postbuild",
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js"

@@ -16,7 +16,7 @@
 # production
 /build
 /posts-cache/*
-/public/_next
+/public/images
 
 # misc
 .DS_Store

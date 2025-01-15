@@ -3,6 +3,7 @@
  */
 const config = {
   outDir: "public/",
+  imageDir: "images",
   generateFormats: ["avif", "webp"],
   convertFormat: [
     ["png", "webp"],
