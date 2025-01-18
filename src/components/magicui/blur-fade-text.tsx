@@ -5,6 +5,7 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useMemo } from "react";
 
 interface BlurFadeTextProps {
+  as?: "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   text: string;
   className?: string;
   variant?: {
@@ -21,6 +22,7 @@ interface BlurFadeTextProps {
 export const BLUR_FADE_DELAY = 0.04;
 
 const BlurFadeText = ({
+  as,
   text,
   className,
   variant,
@@ -29,6 +31,8 @@ const BlurFadeText = ({
   yOffset = 8,
   animateByCharacter = false,
 }: BlurFadeTextProps) => {
+  const DynamicMotionComponent = motion(as || "span");
+
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
     visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
@@ -66,7 +70,7 @@ const BlurFadeText = ({
   return (
     <div className="flex">
       <AnimatePresence>
-        <motion.span
+        <DynamicMotionComponent
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -79,7 +83,7 @@ const BlurFadeText = ({
           className={cn("inline-block", className)}
         >
           {text}
-        </motion.span>
+        </DynamicMotionComponent>
       </AnimatePresence>
     </div>
   );

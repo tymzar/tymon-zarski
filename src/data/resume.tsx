@@ -157,7 +157,7 @@ export const DATA = {
           abstract:
             "Data security is a critical concern for internet users, primarily as more people rely on social networks and online tools daily. Despite the convenience, many users are unaware of the risks posed to their sensitive and personal data. This study addresses this issue by presenting a comprehensive solution to prevent personal data leakage using online tools. We developed a solution that enhances user privacy by identifying and anonymizing named entity classes representing sensitive data while maintaining the original context by swapping source entities for functional data. Our approach utilizes natural language processing methods, combining machine learning tools such as **MITIE** and **spaCy** with rule-based text analysis. We employed regular expressions and large language models to anonymize text, preserving its context for further processing or enabling restoration to the original form after transformations. The results demonstrated the effectiveness of our custom-trained models, achieving an **F1-score of 0.8292**. Additionally, the proposed algorithms successfully preserved context in approximately **93.23% of test cases**, indicating a promising solution for secure data handling in online environments.",
           authors: "Żarski, T.L. & Janicki, A.",
-          date: "20/10/2024",
+          date: "14/01/2025",
           publisher: "/mdpi.jpg",
           graphicalAbstractSrc: "/privacy-ga.png",
         },

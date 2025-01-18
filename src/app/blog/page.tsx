@@ -78,6 +78,7 @@ export default async function Page() {
           <div className="mx-auto w-full max-w-2xl">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
+                as="h1"
                 delay={BLUR_FADE_DELAY}
                 className="text-2xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none"
                 yOffset={8}
