@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build:analyze": "ANALYZE=true next build && next-export-optimize-images",
     "build": "next build && next-export-optimize-images && pnpm postbuild",
     "start": "next start",

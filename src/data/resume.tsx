@@ -193,25 +193,25 @@ export const DATA = {
         desktop: "/portfolio-1200x750.png",
       },
     },
-    {
-      title: "Edu & More Kids",
-      href: "https://www.kids.eduandmore.com",
-      active: true,
-      description:
-        "Edu & More Kids is one of the first web pages I have created. It is a website for a holiday camp for children. The website is built with **Angular**, **TypeScript**, **Material UI**.",
-      technologies: ["Angular", "TypeScript", "Material UI"],
-      links: [
-        {
-          type: "Website",
-          href: "https://www.kids.eduandmore.com",
-          icon: <Icons.globe className="size-4" />,
-        },
-      ],
-      mockups: {
-        mobile: "/emkids-430x880.png",
-        desktop: "/emkids-1200x750.png",
-      },
-    },
+    // {
+    //   title: "Edu & More Kids",
+    //   href: "https://www.kids.eduandmore.com",
+    //   active: true,
+    //   description:
+    //     "Edu & More Kids is one of the first web pages I have created. It is a website for a holiday camp for children. The website is built with **Angular**, **TypeScript**, **Material UI**.",
+    //   technologies: ["Angular", "TypeScript", "Material UI"],
+    //   links: [
+    //     {
+    //       type: "Website",
+    //       href: "https://www.kids.eduandmore.com",
+    //       icon: <Icons.globe className="size-4" />,
+    //     },
+    //   ],
+    //   mockups: {
+    //     mobile: "/emkids-430x880.png",
+    //     desktop: "/emkids-1200x750.png",
+    //   },
+    // },
     {
       title: "Zielono Mi",
       href: "",

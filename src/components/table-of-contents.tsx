@@ -76,7 +76,7 @@ export function TableOfContents() {
             defaultSelectedKey="home"
             items={headingToSidebarItem(nestedHeadings)}
           />
-          <Spacer y={2} />
+          {/* <Spacer y={2} />
           <Card className="mx-2 overflow-visible" shadow="sm">
             <CardBody className="items-center py-5 text-center">
               <h3 className="text-medium font-medium text-default-700">
@@ -100,7 +100,7 @@ export function TableOfContents() {
                 Work in progress
               </Button>
             </CardFooter>
-          </Card>
+          </Card> */}
         </ScrollShadow>
 
         <Spacer y={8} />
