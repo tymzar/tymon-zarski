@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { LayoutHandler } from "@/components/layout-handler";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -70,6 +71,7 @@ export default function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="Tymon's Portfolio" />
         <link rel="manifest" href="/site.webmanifest" />
+        <Script defer src="https://cloud.umami.is/script.js" data-website-id="37ff8097-f578-4218-804d-aa1b7934334d"></Script>
       </head>
       <body
         className={cn(

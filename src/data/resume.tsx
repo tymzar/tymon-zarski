@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Software Engineer, AI Enthusiast. Passionate about building innovative solutions that drive business growth, enhance user experiences and scientific research.",
   summary:
-    "Software engineer with a focus on **front-end** and **NLP** systems development. I have a solid command of **TypeScript**, **JavaScript**, **Python**, and **React**, and application of these skills in creating advanced web applications, language validation systems and microservices architectures. My work includes developing [mKanon](https://www.mbank.pl/o-nas/mkanon/) system at mBank S.A., ensuring efficiency and innovation. As a **executive board member** of the Innovative Information Technology Science Club Delta, I have developed strong leadership and teamwork abilities in both individual and collaborative projects.",
+    "Software Engineer with expertise in full-stack development, **NLP** systems, data extraction, and automation. Strong background in **Python**, **React**, **TypeScript**, and **Docker**. Demonstrated success in improving processes, leveraging **LLMs**, strengthening security, and leading technical interviews and project planning. Committed to continuous improvement and driving innovation in software engineering.",
   avatarUrl: "/me.png",
   skills: [
     "Python",
@@ -93,6 +93,30 @@ export const DATA = {
 
   work: [
     {
+      company: "Hypodossier",
+      href: "https://www.hypodossier.ch",
+      badges: ["Python", "React"],
+      location: "Zurich, On-Site",
+      title: "Senior R&D Engineer & Technical Product Owner",
+      logoUrl: "/hypodossier_logo.jpeg",
+      start: "Jun 2025",
+      end: "Present",
+      description:
+        "Built end-to-end features for a document-processing platform across frontend and backend. Created a contextual data provider driven by extraction outputs from mortgage documents, extending product capabilities and enabling smoother user integrations. Optimized CI/CD and deployment (containerization, release automation), shortening release cycles and improving reliability and operational efficiency.",
+    },
+    {
+      company: "IDEAS Research Institute",
+      href: "https://www.linkedin.com/company/ideas-research-institute",
+      badges: ["Python", "React"],
+      location: "Warsaw, Remote",
+      title: "Applied LLM Researcher (50% FTE)",
+      logoUrl: "/IDEAS_logo.png",
+      start: "Aug 2025",
+      end: "Present",
+      description:
+        "Built an end-to-end document LLM extraction pipeline combining layout-aware OCR (Tesseract/EasyOCR, PaddleOCR, PyMuPDF) with LLMs (Qwen, Deepseek, GPT-OSS family) to collect notarial entities into schema-constrained JSON. Optimized performance by migrating from Ollama to production LLM backends like vLLM and SGLang, architecting a message-driven OCR-to-LLM workflow with RabbitMQ and a Python worker bridge, and containerizing services with Docker while tuning runtime parameters to balance quality and latency on DataCrunch infrastructure.",
+    },
+    {
       company: "Point 72",
       href: "https://point72.com",
       badges: ["Python"],
@@ -100,7 +124,7 @@ export const DATA = {
       title: "Software Engineer II",
       logoUrl: "/p72.png",
       start: "Oct 2024",
-      end: "Present",
+      end: "Jun 2025",
       description:
         "At Point72, I focused on developing and optimizing pipelines, building and maintaining APIs, and utilizing AWS services to create scalable and efficient solutions. I engineered data-driven dashboards using Dash, integrating them with backend services and APIs to deliver actionable insights. My work involved designing and implementing robust data pipelines, ensuring seamless data flow and processing across various platforms, while leveraging AWS to enhance system performance and reliability. I also played a key role in API development, enabling smooth integration between services and enhancing overall system functionality.",
     },

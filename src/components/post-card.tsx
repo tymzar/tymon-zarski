@@ -12,6 +12,7 @@ import {
 import OptimizedImage from "next-export-optimize-images/image";
 
 import Link from "next/link";
+import { track } from "@/utils/analytics";
 
 type PostCardProps = {
   className?: string;
@@ -85,6 +86,7 @@ export function PostCard({
             radius="full"
             size="sm"
             href={`/blog/${id}`}
+            onClick={() => track("blog_read_more_click", { id })}
           >
             Read More
           </Button>

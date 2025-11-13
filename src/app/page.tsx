@@ -14,9 +14,9 @@ import {
 import { ResumeCard } from "@/components/resume-card";
 import { DATA } from "@/data/resume";
 import { getSortedPostsData } from "@/utils/gatherPosts";
-import { Chip, ScrollShadow, Button } from "@nextui-org/react";
+import { Chip, ScrollShadow } from "@nextui-org/react";
+import { ViewAllPostsButton } from "@/components/view-all-posts-button";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 
 import Markdown from "react-markdown";
 
@@ -143,16 +143,7 @@ export default async function Page() {
             </div>
           </ScrollShadow>
         </div>
-        <Button
-          className="ml-auto"
-          href="/blog"
-          as={Link}
-          color="primary"
-          size="md"
-          radius="full"
-        >
-          View all posts
-        </Button>
+        <ViewAllPostsButton />
       </section>
       <section>
         <div className="flex min-h-0 flex-col gap-y-3">

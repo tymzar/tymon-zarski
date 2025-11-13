@@ -7,6 +7,7 @@ import { Button, Chip, Input, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { DATA } from "@/data/resume";
 import { BLUR_FADE_DELAY } from "./magicui/blur-fade-text";
+import { track } from "@/utils/analytics";
 
 type ContactFormInputs = {
   name: string;
@@ -25,6 +26,8 @@ export function Contact() {
 
   const onSubmit: SubmitHandler<ContactFormInputs> = (data) => {
     const { name, topic, message } = data;
+
+    track("contact_form_submit", { topic });
 
     const templateMailToString = (
       name: string,

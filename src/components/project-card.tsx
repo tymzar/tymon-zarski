@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { DesktopMockup } from "./magicui/desktop-mockup";
@@ -11,6 +13,7 @@ import {
   Divider,
 } from "@nextui-org/react";
 import { MobileMockup } from "./magicui/mobile-mockup";
+import { track } from "@/utils/analytics";
 
 interface Props {
   title: string;
@@ -52,6 +55,7 @@ export function ProjectCard({
             href={href || "#"}
             aria-label={`Visit my project ${title} on ${href}`}
             className={cn("block cursor-pointer", className)}
+            onClick={() => track("project_click", { title, href })}
           >
             <div className="relative w-full mt-2">
               <DesktopMockup
@@ -99,6 +103,9 @@ export function ProjectCard({
                 color="primary"
                 className="px-2"
                 startContent={link.icon}
+                onClick={() =>
+                  track("project_link_click", { type: link.type, href: link.href })
+                }
               >
                 {link.type}
               </Chip>
