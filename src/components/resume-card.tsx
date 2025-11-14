@@ -50,6 +50,7 @@ export const ResumeCard = ({
             isBordered
             color="primary"
             classNames={{
+              base: "bg-white",
               img: "object-contain",
             }}
             imgProps={{

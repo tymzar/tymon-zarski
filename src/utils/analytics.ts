@@ -1,8 +1,20 @@
 export function track(event: string, data?: Record<string, any>) {
   if (typeof window === "undefined") return;
 
-  // Umami injects a global function when the script loads
-  (window as any).umami?.(event, data);
+  const umami = (window as any).umami;
+
+  if (!umami) return;
+
+  // Newer Umami exposes an object with a `track` method
+  if (typeof umami.track === "function") {
+    umami.track(event, data);
+    return;
+  }
+
+  // Older Umami exposed a callable function
+  if (typeof umami === "function") {
+    umami(event, data);
+  }
 }
 
 

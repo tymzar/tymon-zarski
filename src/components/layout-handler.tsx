@@ -5,6 +5,7 @@ import { cn } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { UmamiIdentifier } from "./umami-identifier";
 
 type MainContentProps = {
   children: React.ReactNode;
@@ -28,18 +29,24 @@ export function LayoutHandler({ children }: MainContentProps) {
   }, []);
 
   return (
-    <div className="grid grid-cols-8 gap-4">
-      {!matches ? <DynamicNavbar /> : null}
-      {matches ? (
-        <div className="col-span-3 max-w-[300px]">
-          <DynamicTableOfContents />
+    <>
+      <UmamiIdentifier />
+      <div className="grid grid-cols-8 gap-4">
+        {!matches ? <DynamicNavbar /> : null}
+        {matches ? (
+          <div className="col-span-3 max-w-[300px]">
+            <DynamicTableOfContents />
+          </div>
+        ) : null}
+        <div
+          className={cn(
+            matches ? "col-span-5" : "col-span-8",
+            "py-8 sm:py-24"
+          )}
+        >
+          {children}
         </div>
-      ) : null}
-      <div
-        className={cn(matches ? "col-span-5" : "col-span-8", "py-8 sm:py-24")}
-      >
-        {children}
       </div>
-    </div>
+    </>
   );
 }
