@@ -1,8 +1,11 @@
 "use client";
 
-import { cn } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useMemo } from "react";
+
+// framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
+type AnyMotionProps = Record<string, unknown>;
 
 interface BlurFadeTextProps {
   as?: "span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -21,6 +24,8 @@ interface BlurFadeTextProps {
 
 export const BLUR_FADE_DELAY = 0.04;
 
+const MotionSpan = motion.span as React.ComponentType<AnyMotionProps>;
+
 const BlurFadeText = ({
   as,
   text,
@@ -31,7 +36,7 @@ const BlurFadeText = ({
   yOffset = 8,
   animateByCharacter = false,
 }: BlurFadeTextProps) => {
-  const DynamicMotionComponent = motion(as || "span");
+  const DynamicMotionComponent = motion.create(as || "span") as React.ComponentType<AnyMotionProps>;
 
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
@@ -45,7 +50,7 @@ const BlurFadeText = ({
       <div className="flex">
         <AnimatePresence>
           {characters.map((char, i) => (
-            <motion.span
+            <MotionSpan
               key={i}
               initial="hidden"
               animate="visible"
@@ -60,7 +65,7 @@ const BlurFadeText = ({
               style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
             >
               {char}
-            </motion.span>
+            </MotionSpan>
           ))}
         </AnimatePresence>
       </div>

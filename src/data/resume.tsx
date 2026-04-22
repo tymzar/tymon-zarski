@@ -109,7 +109,7 @@ export const DATA = {
       href: "https://www.linkedin.com/company/ideas-research-institute",
       badges: ["Python", "React"],
       location: "Warsaw, Remote",
-      title: "Applied LLM Researcher (50% FTE)",
+      title: "AI Engineer (50% FTE)",
       logoUrl: "/IDEAS_logo.png",
       start: "Aug 2025",
       end: "Present",
@@ -139,18 +139,6 @@ export const DATA = {
       end: "Sep 2024",
       description:
         'I engineered and implemented a Python-based NLP system for mKanon using FastAPI, Spacy, Morfeusz2, and scikit-learn for data classification and dimension reduction, while also developing a task analysis dashboard to optimize internal processes through clustering techniques. My work on the "CCL Component Library" involved adding features to key components, building large components, and integrating them with business logic. Additionally, I developed SPAs connected to API endpoints for mBank clients, resolved frontend security vulnerabilities, and introduced new DOM handling logic for mKanon. I automated visual testing for Design System components and integrated automation tools like Gmail API and GCP. Furthermore, I led technical interviews, managed project planning, and drove process improvements that enhanced team collaboration and overall efficiency.',
-    },
-    {
-      company: "Personalized Solutions",
-      href: "#",
-      badges: ["Python"],
-      location: "Warsaw, Poland",
-      title: "Owner & AI Application Engineer",
-      logoUrl: "/psln.png",
-      start: "Jan 2021",
-      end: "Present",
-      description:
-        "At Persolozized Solutions, I specialized in commerce development, front-end engineering, and the application of AI solutions across various sectors. My work involved creating responsive and scalable front-end interfaces, optimizing user experiences, and integrating advanced AI-driven features to enhance functionality and decision-making processes in commercial platforms. I played a key role in developing customized solutions tailored to diverse business needs, leveraging AI technologies to drive innovation and streamline operations. This included building efficient e-commerce systems and implementing AI models that improved business outcomes across different industries.",
     },
     {
       company: "Onwelo",

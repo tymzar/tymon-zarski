@@ -1,5 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
-import { cn, NextUIProvider } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 import { DATA } from "@/data/resume";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
@@ -79,11 +78,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <NextUIProvider>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            <LayoutHandler>{children}</LayoutHandler>
-          </ThemeProvider>
-        </NextUIProvider>
+        <LayoutHandler>{children}</LayoutHandler>
       </body>
     </html>
   );

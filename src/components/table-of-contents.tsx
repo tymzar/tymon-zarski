@@ -1,20 +1,10 @@
 "use client";
 
 import { HeadingItem, useHeadingData } from "@/hooks/use-heading-data";
-import {
-  Avatar,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Link,
-  ScrollShadow,
-  Spacer,
-} from "@nextui-org/react";
+import { Avatar, Link, ScrollShadow } from "@heroui/react";
 import Sidebar, { SidebarItem } from "./sidebar";
 import { useIntersectionObserver } from "@/hooks/use-heading-observer";
 import { DATA } from "@/data/resume";
-import OptimizedImage from "next-export-optimize-images/image";
 import { ModeToggle } from "./mode-toggle";
 import { usePathname } from "next/navigation";
 
@@ -38,20 +28,10 @@ export function TableOfContents() {
       <div className="relative flex h-full flex-1 flex-col border-r-small border-divider p-6">
         <div className="flex items-center justify-between gap-2 px-2 mt-10 pt-8">
           <div className="flex items-center justify-center rounded-full">
-            <Avatar
-              ImgComponent={OptimizedImage}
-              alt="Tymon Lesław Żarski avatar"
-              imgProps={{
-                width: 56,
-                height: 56,
-                // @ts-expect-error placeholder is not in the types
-                placeholder: "blur",
-              }}
-              isBordered
-              color="primary"
-              src={DATA.avatarUrl}
-              size="lg"
-            />
+            <Avatar color="accent" size="lg" className="ring-2 ring-accent/30">
+              <Avatar.Image src={DATA.avatarUrl} alt="Tymon Lesław Żarski avatar" />
+              <Avatar.Fallback>TŻ</Avatar.Fallback>
+            </Avatar>
           </div>
           <span className="text-body font-bold">Tymon Lesław Żarski</span>
         </div>
@@ -76,34 +56,9 @@ export function TableOfContents() {
             defaultSelectedKey="home"
             items={headingToSidebarItem(nestedHeadings)}
           />
-          {/* <Spacer y={2} />
-          <Card className="mx-2 overflow-visible" shadow="sm">
-            <CardBody className="items-center py-5 text-center">
-              <h3 className="text-medium font-medium text-default-700">
-                Ask about my career
-                <span aria-label="rocket-emoji" className="ml-2" role="img">
-                  💬
-                </span>
-              </h3>
-              <p className="py-4 px-2 text-small text-default-500">
-                Use my custom made RAG connected to industry leading LLM&apos;s
-                to get to know my experience and skills.
-              </p>
-            </CardBody>
-            <CardFooter className="absolute -bottom-8 justify-center">
-              <Button
-                className="px-10 shadow-md"
-                color="primary"
-                radius="full"
-                variant="shadow"
-              >
-                Work in progress
-              </Button>
-            </CardFooter>
-          </Card> */}
         </ScrollShadow>
 
-        <Spacer y={8} />
+        <div className="h-8" />
 
         <div className="mt-auto flex flex-col">
           <ModeToggle />

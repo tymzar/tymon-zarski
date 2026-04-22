@@ -3,6 +3,9 @@
 import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 
+// framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
+const MotionDiv = motion.div as React.ComponentType<Record<string, unknown>>;
+
 interface BlurFadeProps {
   children: React.ReactNode;
   className?: string;
@@ -39,7 +42,7 @@ const BlurFade = ({
   const combinedVariants = variant || defaultVariants;
   return (
     <AnimatePresence>
-      <motion.div
+      <MotionDiv
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -53,7 +56,7 @@ const BlurFade = ({
         className={className}
       >
         {children}
-      </motion.div>
+      </MotionDiv>
     </AnimatePresence>
   );
 };

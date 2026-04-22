@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import Link from "next/link";
 import { track } from "@/utils/analytics";
 
@@ -10,17 +10,16 @@ export function ViewAllPostsButton() {
     };
 
     return (
-        <Button
-            className="ml-auto"
-            href="/blog"
-            as={Link}
-            color="primary"
-            size="md"
-            radius="full"
-            onPress={handleClick}
-        >
-            View all posts
-        </Button>
+        <Link href="/blog">
+            <Button
+                className="ml-auto rounded-full"
+                variant="primary"
+                size="md"
+                onPress={handleClick}
+            >
+                View all posts
+            </Button>
+        </Link>
     );
 }
 

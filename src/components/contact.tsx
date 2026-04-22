@@ -3,7 +3,7 @@
 import BlurFade from "./magicui/blur-fade";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Button, Chip, Input, Textarea } from "@nextui-org/react";
+import { Button, Chip, Input, TextArea } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { DATA } from "@/data/resume";
 import { BLUR_FADE_DELAY } from "./magicui/blur-fade-text";
@@ -44,7 +44,7 @@ export function Contact() {
     <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
       <BlurFade delay={BLUR_FADE_DELAY * 16}>
         <div className="space-y-3">
-          <Chip id="tc-contact" color="primary" variant="shadow">
+          <Chip id="tc-contact" color="accent" variant="primary">
             Contact
           </Chip>
           <h2
@@ -62,27 +62,27 @@ export function Contact() {
               <div className="flex gap-3">
                 <Input
                   type="text"
-                  label="Name"
-                  isRequired
+                  placeholder="Name"
+                  required
                   {...register("name", { required: true })}
-                  isInvalid={!!errors.name}
+                  aria-invalid={!!errors.name}
                 />
                 <Input
                   type="text"
-                  label="Topic"
-                  isRequired
+                  placeholder="Topic"
+                  required
                   {...register("topic", { required: true })}
-                  isInvalid={!!errors.topic}
+                  aria-invalid={!!errors.topic}
                 />
               </div>
-              <Textarea
-                label="Description"
+              <TextArea
+                placeholder="Description"
                 className="w-full"
-                isRequired
+                required
                 {...register("message", { required: true })}
-                isInvalid={!!errors.message}
+                aria-invalid={!!errors.message}
               />
-              <Button fullWidth color="primary" type="submit" variant="shadow">
+              <Button fullWidth type="submit" variant="primary">
                 Send message
               </Button>
             </div>

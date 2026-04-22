@@ -1,7 +1,7 @@
 "use client";
 
-import { Accordion, AccordionItem, Button, Chip, cn } from "@nextui-org/react";
-import OptimizedImage from "next-export-optimize-images/image";
+import { Accordion, AccordionItem, Button, Chip, cn } from "@heroui/react";
+import OptimizedImage from "next/image";
 import Link from "next/link";
 
 import Markdown from "react-markdown";
@@ -26,14 +26,7 @@ export function PublicationAccordion({
   return (
     <div className="mt-[24px]">
       <h3 className="mb-2 font-bold">Publications</h3>
-      <Accordion
-        variant="splitted"
-        selectionMode="multiple"
-        isCompact
-        itemClasses={{
-          title: "font-normal text-small",
-        }}
-      >
+      <Accordion variant="surface">
         {publications.map(
           ({
             title,
@@ -46,52 +39,58 @@ export function PublicationAccordion({
           }) => (
             <AccordionItem
               key={title}
-              title={title}
+              id={title}
               isDisabled={!Boolean(href)}
-              startContent={
-                <div className={cn([!Boolean(href) ? "blur-sm" : ""])}>
-                  <OptimizedImage
-                    placeholder="blur"
-                    className="rounded-lg"
-                    src={publisher}
-                    alt={`publisher-${title}`}
-                    width={50}
-                    height={50}
-                  />
-                </div>
-              }
             >
-              <OptimizedImage
-                src={graphicalAbstractSrc}
-                alt={title}
-                width={440}
-                height={211}
-                className="mx-auto mb-1 w-full"
-              />
-              <div className="flex justify-between items-center">
-                <p className="text-medium">{authors}</p>
-                <Chip size="md" color="primary">
-                  {date}
-                </Chip>
-              </div>
-              <h5 className="text-medium font-bold mt-3">Abstract</h5>
-              <Markdown className="text-small text-justify">
-                {abstract}
-              </Markdown>
-              <div className="flex justify-end mt-2">
-                <Button
-                  as={Link}
-                  href={href}
-                  color="primary"
-                  variant="shadow"
-                  target="_blank"
-                  size="sm"
-                  isDisabled={!Boolean(href)}
-                  className="mb-1"
-                >
-                  {Boolean(href) ? "Read more" : "Under review"}
-                </Button>
-              </div>
+              <Accordion.Heading>
+                <Accordion.Trigger className="font-normal text-small">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={cn(["shrink-0", !Boolean(href) ? "blur-sm" : ""])}>
+                      <OptimizedImage
+                        className="rounded-lg"
+                        src={publisher}
+                        alt={`publisher-${title}`}
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    {title}
+                  </div>
+                </Accordion.Trigger>
+              </Accordion.Heading>
+              <Accordion.Panel>
+                <Accordion.Body>
+                  <OptimizedImage
+                    src={graphicalAbstractSrc}
+                    alt={title}
+                    width={440}
+                    height={211}
+                    className="mx-auto mb-1 w-full"
+                  />
+                  <div className="flex justify-between items-center">
+                    <p className="text-medium">{authors}</p>
+                    <Chip size="md" color="accent">
+                      {date}
+                    </Chip>
+                  </div>
+                  <h5 className="text-medium font-bold mt-3">Abstract</h5>
+                  <Markdown className="text-small text-justify">
+                    {abstract}
+                  </Markdown>
+                  <div className="flex justify-end mt-2">
+                    {href ? (
+                      <Link href={href} target="_blank" rel="noopener noreferrer">
+                        <Button variant="primary" size="sm" className="mb-1">
+                          Read more
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button variant="primary" size="sm" isDisabled className="mb-1">
+                        Under review
+                      </Button>
+                    )}
+                  </div></Accordion.Body>
+              </Accordion.Panel>
             </AccordionItem>
           )
         )}

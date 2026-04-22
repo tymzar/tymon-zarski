@@ -1,16 +1,17 @@
 "use server";
 
 import { getPostBySlug, getSortedPostsData } from "@/utils/gatherPosts";
-import { Chip, Divider } from "@nextui-org/react";
+import { Chip, Separator } from "@heroui/react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Icon } from "@iconify/react";
 import { Fragment } from "react";
 import Link from "next/link";
-import OptimizedImage from "next-export-optimize-images/image";
+import OptimizedImage from "next/image";
 
 import type { Metadata, ResolvingMetadata } from "next";
 import { DATA } from "@/data/resume";
+import { globalComponents } from "@/components/mdx";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -111,20 +112,21 @@ export default async function Page({ params }: PageProps) {
           width={600}
           height={340}
           className="rounded-[24px] object-cover"
+          loading="eager"
         />
         <Chip
-          color="primary"
+          color="accent"
           size="sm"
-          variant="shadow"
+          variant="primary"
           className="absolute top-3 left-3 z-50  "
         >
           Published on {postContent.date.toLocaleDateString()}
         </Chip>
         {postContent.part && (
           <Chip
-            color="primary"
+            color="accent"
             size="sm"
-            variant="shadow"
+            variant="primary"
             className="absolute top-3 right-3 z-50"
           >
             Part #{postContent.part}
@@ -134,13 +136,14 @@ export default async function Page({ params }: PageProps) {
 
       <Markdown
         rehypePlugins={[rehypeRaw]}
+        components={globalComponents as any}
         className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
       >
         {postContent.content}
       </Markdown>
 
       <section className="mt-8">
-        <Divider />
+        <Separator />
 
         <div className="flex justify-between mt-4">
           <div className="flex flex-col items-start gap-1 w-1/2">
@@ -149,16 +152,12 @@ export default async function Page({ params }: PageProps) {
                 <span className="text-muted-foreground text-tiny">
                   {prevPost.title}
                 </span>
-                <Chip
-                  color="primary"
-                  size="sm"
-                  variant="shadow"
-                  startContent={<Icon icon="akar-icons:arrow-left" />}
-                  as={Link}
-                  href={`/blog/${prevPost.id}`}
-                >
-                  Previous Part
-                </Chip>
+                <Link href={`/blog/${prevPost.id}`}>
+                  <Chip color="accent" size="sm" variant="primary">
+                    <Icon icon="akar-icons:arrow-left" />
+                    Previous Part
+                  </Chip>
+                </Link>
               </Fragment>
             )}
           </div>
@@ -168,16 +167,12 @@ export default async function Page({ params }: PageProps) {
                 <span className="text-muted-foreground text-tiny text-right">
                   {nextPost.title}
                 </span>
-                <Chip
-                  color="primary"
-                  size="sm"
-                  variant="shadow"
-                  endContent={<Icon icon="akar-icons:arrow-right" />}
-                  as="a"
-                  href={`/blog/${nextPost.id}`}
-                >
-                  Next Part
-                </Chip>
+                <Link href={`/blog/${nextPost.id}`}>
+                  <Chip color="accent" size="sm" variant="primary">
+                    Next Part
+                    <Icon icon="akar-icons:arrow-right" />
+                  </Chip>
+                </Link>
               </Fragment>
             )}
           </div>

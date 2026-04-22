@@ -1,15 +1,8 @@
 "use client";
 
 import { PostData } from "@/utils/gatherPosts";
-import {
-  Button,
-  Card,
-  CardFooter,
-  CardHeader,
-  Chip,
-  cn,
-} from "@nextui-org/react";
-import OptimizedImage from "next-export-optimize-images/image";
+import { Button, Card, Chip, cn } from "@heroui/react";
+import OptimizedImage from "next/image";
 
 import Link from "next/link";
 import { track } from "@/utils/analytics";
@@ -29,69 +22,64 @@ export function PostCard({
   className,
   thumbnail = false,
 }: PostData & PostCardProps) {
-  return (
-    <Card
-      isPressable={thumbnail}
-      as={thumbnail ? "a" : undefined}
-      href={thumbnail ? `/blog/${id}` : undefined}
-      isFooterBlurred
-      className={cn(className, "relative")}
-      isHoverable
-    >
-      <CardHeader
-        className={cn(
-          thumbnail
-            ? "w-full h-full justify-between items-start"
-            : "items-start",
-          "absolute z-10 top-1 flex-col gap-1"
-        )}
-      >
-        {project && (
-          <div className="flex justify-between w-full">
-            <Chip color="primary" size="sm" variant="faded">
-              {project}
-            </Chip>
-            <Chip color="primary" size="sm" variant="shadow">
-              Part #{part}
-            </Chip>
-          </div>
-        )}
-        <h4
+  const card = (
+    <Card className={cn(className, "p-0 overflow-hidden")}>
+      <Card.Content>
+        <div
           className={cn(
-            thumbnail ? "text-medium" : "text-2xl font-medium",
-            "text-black bg-white/30 backdrop-blur-sm py-1 px-2 rounded-lg"
+            "absolute z-10 top-2 left-2 right-2 flex flex-col gap-1",
+            thumbnail ? "h-[calc(100%-16px)] justify-between items-start" : "items-start"
           )}
         >
-          {title}
-        </h4>
-      </CardHeader>
-      <OptimizedImage
-        width={400}
-        height={250}
-        alt="Card example background"
-        className="z-0 w-full h-full scale-125 object-cover"
-        src={coverImage}
-      />
-      {!thumbnail && (
-        <CardFooter className=" p-2 absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
-          <div>
-            <p className="text-black text-tiny">
+          {project && (
+            <div className="flex justify-between w-full p-2">
+              <Chip className="text-sm" color="accent" size="sm" variant="primary">
+                {project}
+              </Chip>
+              <Chip className="text-sm" color="accent" size="sm" variant="primary">
+                Part #{part}
+              </Chip>
+            </div>
+          )}
+          <h4
+            className={cn(
+              thumbnail ? "text-medium" : "text-2xl font-medium",
+              "text-black bg-white/30 backdrop-blur-sm py-1 px-2 rounded-lg"
+            )}
+          >
+            {title}
+          </h4>
+        </div>
+        <OptimizedImage
+          width={400}
+          height={250}
+          alt="Card example background"
+          className="z-0 w-full h-full scale-125 object-cover"
+          src={coverImage}
+        />
+        {!thumbnail && (
+          <div className="p-4 rounded-b-3xl absolute bg-white/70 backdrop-blur-md bottom-0 left-0 right-0 border-t border-zinc-100/50 z-10 flex justify-between items-center gap-2">
+            <p className="text-black text-sm">
               Published on {date.toLocaleDateString("en-US")}
             </p>
+            <Link href={`/blog/${id}`} onClick={() => track("blog_read_more_click", { id })}>
+              <Button
+                className="text-sm rounded-full"
+                variant="primary"
+                size="sm"
+              >
+                Read More
+              </Button>
+            </Link>
           </div>
-          <Button
-            as={Link}
-            className="text-tiny"
-            color="primary"
-            radius="full"
-            size="sm"
-            href={`/blog/${id}`}
-            onClick={() => track("blog_read_more_click", { id })}
-          >
-            Read More
-          </Button>
-        </CardFooter>
-      )}
-    </Card>
+        )}
+      </Card.Content>
+    </Card >
+  );
+
+  return thumbnail ? (
+    <Link href={`/blog/${id}`}>{card}</Link>
+  ) : (
+    card
   );
 }

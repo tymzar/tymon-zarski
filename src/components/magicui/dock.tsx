@@ -1,9 +1,13 @@
 "use client";
 
-import { cn } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { PropsWithChildren, useRef } from "react";
+
+// framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MotionDiv = motion.div as React.ComponentType<any>;
 
 export interface DockProps extends VariantProps<typeof dockVariants> {
   className?: string;
@@ -46,15 +50,15 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     };
 
     return (
-      <motion.div
+      <MotionDiv
         ref={ref}
-        onMouseMove={(e) => mousex.set(e.pageX)}
+        onMouseMove={(e: React.MouseEvent<HTMLDivElement>) => mousex.set(e.pageX)}
         onMouseLeave={() => mousex.set(Infinity)}
         {...props}
         className={cn(dockVariants({ className }))}
       >
         {renderChildren()}
-      </motion.div>
+      </MotionDiv>
     );
   }
 );
@@ -100,7 +104,7 @@ const DockIcon = ({
   });
 
   return (
-    <motion.div
+    <MotionDiv
       ref={ref}
       style={{ width }}
       className={cn(
@@ -110,7 +114,7 @@ const DockIcon = ({
       {...props}
     >
       {children}
-    </motion.div>
+    </MotionDiv>
   );
 };
 

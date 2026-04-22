@@ -1,6 +1,6 @@
 "use client";
 
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { BreadcrumbsItem, Breadcrumbs } from "@heroui/react";
 
 type BreadcrumbItemProps = {
   href: string;
@@ -16,13 +16,13 @@ export function ClientBreadcrumbs({ contents }: ClientBreadcrumbsProps) {
   return (
     <Breadcrumbs>
       {contents.map((content) => (
-        <BreadcrumbItem
+        <BreadcrumbsItem
           key={`breadcrumb-item-${content.href}-${content.children}`}
           href={content.href}
           className={content.className}
         >
           {content.children}
-        </BreadcrumbItem>
+        </BreadcrumbsItem>
       ))}
     </Breadcrumbs>
   );

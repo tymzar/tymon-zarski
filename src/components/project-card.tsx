@@ -5,13 +5,13 @@ import Markdown from "react-markdown";
 import { DesktopMockup } from "./magicui/desktop-mockup";
 import {
   Card,
-  CardBody,
+  CardContent,
   CardFooter,
   CardHeader,
   Chip,
   cn,
-  Divider,
-} from "@nextui-org/react";
+  Separator,
+} from "@heroui/react";
 import { MobileMockup } from "./magicui/mobile-mockup";
 import { track } from "@/utils/analytics";
 
@@ -40,12 +40,8 @@ export function ProjectCard({
   mockups: { desktop, mobile },
 }: Props) {
   return (
-    <Card
-      isBlurred
-      className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
-      shadow="sm"
-    >
-      <CardHeader className="flex gap-3">
+    <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]">
+      <Card.Header className="flex gap-3">
         <div className="">
           <h3 className="mt-1 text-lg">{title}</h3>
           <div className="hidden font-sans text-xs underline print:visible">
@@ -75,44 +71,46 @@ export function ProjectCard({
             {description}
           </Markdown>
         </div>
-      </CardHeader>
-      <Divider />
-      <CardBody>
+      </Card.Header>
+      <Separator />
+      <Card.Content>
         {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-2">
             {tags?.map((tag) => (
-              <Chip variant="bordered" size="sm" color="primary" key={tag}>
+              <Chip variant="primary" size="sm" color="accent" key={tag}>
                 {tag}
               </Chip>
             ))}
           </div>
         )}
-      </CardBody>
-      <Divider />
-      <CardFooter className="flex justify-end px-2 pb-2">
+      </Card.Content>
+      <Separator />
+      <Card.Footer className="flex justify-end px-2 pb-2">
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
-              <Chip
-                as={Link}
+              <a
+                key={idx}
                 href={link?.href}
                 target={link.href.startsWith("https") ? "_blank" : "_self"}
-                key={idx}
-                isDisabled={link.disabled}
-                variant="shadow"
-                color="primary"
-                className="px-2"
-                startContent={link.icon}
+                rel="noopener noreferrer"
                 onClick={() =>
                   track("project_link_click", { type: link.type, href: link.href })
                 }
               >
-                {link.type}
-              </Chip>
+                <Chip
+                  variant="primary"
+                  color="accent"
+                  className="px-2"
+                >
+                  {link.icon}
+                  {link.type}
+                </Chip>
+              </a>
             ))}
           </div>
         )}
-      </CardFooter>
+      </Card.Footer>
     </Card>
   );
 }

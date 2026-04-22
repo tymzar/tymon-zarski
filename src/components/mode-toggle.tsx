@@ -1,27 +1,29 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "next-themes";
 import { useDarkMode } from "usehooks-ts";
 
 export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
-  const { set } = useDarkMode({
-    defaultValue: true,
-  });
+  const { isDarkMode, set } = useDarkMode({ defaultValue: true });
+
+  const toggleTheme = () => {
+    const next = isDarkMode ? "light" : "dark";
+    set(!isDarkMode);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(next);
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("heroui-theme", next);
+  };
 
   return (
     <Button
-      variant="light"
+      variant="ghost"
       type="button"
       aria-label="mode-dark-toggle"
       isIconOnly
       className="px-2"
-      onPress={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-        set(theme === "dark");
-      }}
+      onPress={toggleTheme}
     >
       <SunIcon className="h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
       <MoonIcon className="hidden h-[1.2rem] w-[1.2rem] text-neutral-800 dark:block dark:text-neutral-200" />

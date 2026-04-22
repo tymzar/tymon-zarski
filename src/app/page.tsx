@@ -14,18 +14,10 @@ import {
 import { ResumeCard } from "@/components/resume-card";
 import { DATA } from "@/data/resume";
 import { getSortedPostsData } from "@/utils/gatherPosts";
-import { Chip, ScrollShadow } from "@nextui-org/react";
+import { Chip, ScrollShadow } from "@heroui/react";
 import { ViewAllPostsButton } from "@/components/view-all-posts-button";
-import dynamic from "next/dynamic";
-
 import Markdown from "react-markdown";
-
-const ClientSkillsComponent = dynamic(
-  () => import("@/components/skills").then((mod) => mod.Skills),
-  {
-    ssr: false,
-  }
-);
+import { Skills } from "@/components/skills";
 
 export default async function Page() {
   const allPostsData = getSortedPostsData(3);
@@ -152,11 +144,11 @@ export default async function Page() {
               Skills
             </h2>
           </BlurFade>
-          <ClientSkillsComponent />
-          <div className="flex flex-wrap gap-1">
+          <Skills />
+          <div className="flex flex-wrap gap-2">
             {DATA.skills.map((skill, id) => (
               <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Chip color="primary" size="sm" variant="shadow" key={skill}>
+                <Chip color="accent" size="sm" variant="primary" key={skill}>
                   {skill}
                 </Chip>
               </BlurFade>
@@ -169,7 +161,7 @@ export default async function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <Chip id="tc-projects" color="primary" variant="shadow">
+                <Chip id="tc-projects" color="accent" variant="primary">
                   My Projects
                 </Chip>
                 <h2

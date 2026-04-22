@@ -8,11 +8,11 @@ import { getSortedPostsData, PostData } from "@/utils/gatherPosts";
 import {
   Button,
   Card,
-  CardBody,
+  CardContent,
   CardHeader,
-  Divider,
+  Separator,
   ScrollShadow,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Icon } from "@iconify/react";
@@ -61,17 +61,16 @@ export default async function Page() {
           />
         </div>
         {/* return to blogs */}
-        <Button
-          as={Link}
-          className="text-tiny"
-          color="primary"
-          radius="full"
-          size="sm"
-          startContent={<Icon icon="akar-icons:arrow-left" />}
-          href="/"
-        >
-          Home
-        </Button>
+        <Link href="/">
+          <Button
+            className="text-tiny rounded-full"
+            variant="primary"
+            size="sm"
+          >
+            <Icon icon="akar-icons:arrow-left" />
+            Home
+          </Button>
+        </Link>
       </header>
       <main className="flex flex-col space-y-5">
         <section>
@@ -110,7 +109,7 @@ export default async function Page() {
             <div className="flex flex-col space-y-3 my-3">
               {Object.keys(blogContent.projects).map((project, index) => (
                 <Fragment key={project}>
-                  <Card className="rounded-[26px]" fullWidth>
+                  <Card className="rounded-[26px] w-full">
                     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                       <small className="text-default-500 mt-1">
                         {blogContent.projects[
@@ -127,7 +126,7 @@ export default async function Page() {
                         ][0].project?.toUpperCase()}
                       </h4>
                     </CardHeader>
-                    <CardBody className="overflow-visible space-y-3">
+                    <CardContent className="overflow-visible space-y-3">
                       {blogContent.projects[project].length >= 1 && (
                         <PostCard
                           className="min-w-full sm:min-w-[400px] h-[200px] sm:h-[250px]"
@@ -156,10 +155,10 @@ export default async function Page() {
                           </div>
                         </ScrollShadow>
                       )}
-                    </CardBody>
+                    </CardContent>
                   </Card>
                   {index < Object.keys(blogContent.projects).length - 1 && (
-                    <Divider />
+                    <Separator />
                   )}
                 </Fragment>
               ))}

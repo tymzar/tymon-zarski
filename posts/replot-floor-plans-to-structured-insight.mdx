@@ -9,10 +9,10 @@ category: 'project'
 coverImage: '/replot-plan-parsing.png'
 ---
 
-<h2 className="mt-2 mb-1" id="tc-replot-overview">What is Replot?</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-overview">What is Replot?</h2>
 Replot is a comprehensive system that converts architectural floor plans into structured, reviewable data. The platform combines computer vision techniques with a modern web architecture to transform static floor plan images into interpretable geometric data, making architectural information accessible and actionable.
 
-<h2 className="mt-2 mb-1" id="tc-replot-architecture">System Architecture</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-architecture">System Architecture</h2>
 
 The system is built around a clean separation of concerns, with three main components working together to deliver a seamless experience:
 
@@ -46,7 +46,7 @@ UI <---- polls status / fetches results ----> API <---- orchestrates ----> Pipel
 
 The architecture consists of a **Next.js frontend** for user interactions, a **Django API** for job orchestration, and a **modular pipeline** for image processing. This separation allows each component to be optimized for its specific role while maintaining clear interfaces between them.
 
-<h2 className="mt-2 mb-1" id="tc-replot-pipeline">The Processing Pipeline</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-pipeline">The Processing Pipeline</h2>
 
 The heart of Replot is its four-stage processing pipeline that transforms raw floor plan images into structured data:
 
@@ -58,7 +58,7 @@ The heart of Replot is its four-stage processing pipeline that transforms raw fl
 
 Each stage is self-contained and modular, enabling targeted improvements without affecting other components. This design makes the system maintainable and allows for safe experimentation with new processing techniques.
 
-<h2 className="mt-2 mb-1" id="tc-replot-api">API and Orchestration</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-api">API and Orchestration</h2>
 
 A Django-powered REST API serves as the central orchestrator for all processing jobs. The API handles job creation, status polling, and result retrieval while maintaining strong typing through OpenAPI schemas.
 
@@ -70,7 +70,7 @@ Key API features include:
 
 The API abstracts away pipeline complexity, providing a clean interface that keeps the frontend lightweight and responsive.
 
-<h2 className="mt-2 mb-1" id="tc-replot-ui">User Interface and Review</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-ui">User Interface and Review</h2>
 
 The private Next.js interface streamlines the entire workflow from upload to review. Users can upload floor plan images, monitor processing progress in real-time, and interact with the results through an intuitive web interface.
 
@@ -80,13 +80,13 @@ The UI provides:
 - **Interactive overlays** comparing original plans with detected elements
 - **Export capabilities** for downstream use of structured data
 
-<h2 className="mt-2 mb-1" id="tc-replot-technology">Technology Stack</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-technology">Technology Stack</h2>
 
 Replot is built with a modern, maintainable stack. The frontend uses **Next.js** and **TypeScript** to provide a robust user interface, with **React** powering interactive elements and **Tailwind CSS** ensuring responsive styling. On the backend, a **Django** application—extended with the **Django REST Framework**—serves as the API layer, generating **OpenAPI** schemas for type safety and using **Python** for all image processing and computer vision tasks.
 
 The processing pipeline itself combines computer vision libraries for image analysis with geometric algorithms for shape refinement, all organized in a modular architecture that allows independent updates to each component.
 
-<h2 className="mt-2 mb-1" id="tc-replot-modularity">Why Modularity Matters</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-modularity">Why Modularity Matters</h2>
 
 The modular design of Replot's pipeline is one of its key strengths. By separating input, detection, processing, and output into distinct phases, the system enables:
 
@@ -97,7 +97,7 @@ The modular design of Replot's pipeline is one of its key strengths. By separati
 
 This architecture makes Replot adaptable to evolving requirements and new processing techniques while maintaining system stability.
 
-<h2 className="mt-2 mb-1" id="tc-replot-results">Processing Results</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-results">Processing Results</h2>
 
 ![Post‑processing refinement](/replot-active-contour-post-processing.png)
 _Advanced refinement techniques that clean and regularize detected shapes for low confidence regions._
@@ -105,7 +105,7 @@ _Advanced refinement techniques that clean and regularize detected shapes for lo
 ![Parsed plan visualization](/replot-plan-parsing.png)
 _Overlay visualization showing detected regions and architectural components for quick validation._
 
-<h2 className="mt-2 mb-1" id="tc-replot-future">Future Development</h2>
+<h2 class="mt-2 mb-1" id="tc-replot-future">Future Development</h2>
 
 Replot's architecture is designed for growth and adaptation. The modular pipeline can accommodate new processing steps, the API can evolve without breaking existing clients, and the visualization tools can expand as requirements become more sophisticated.
 

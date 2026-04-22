@@ -1,12 +1,15 @@
 "use client";
 
 import { Card, CardHeader } from "@/components/ui/card";
-import { Avatar, Chip, cn } from "@nextui-org/react";
+import { Avatar, Chip, cn } from "@heroui/react";
 import { motion } from "framer-motion";
+
+// framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MotionDiv = motion.div as React.ComponentType<any>;
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import OptimizedImage from "next-export-optimize-images/image";
 
 interface ResumeCardProps {
   logoUrl: string;
@@ -45,23 +48,14 @@ export const ResumeCard = ({
     >
       <Card className="flex">
         <div className="flex-none">
-          <Avatar
-            ImgComponent={OptimizedImage}
-            isBordered
-            color="primary"
-            classNames={{
-              base: "bg-white",
-              img: "object-contain",
-            }}
-            imgProps={{
-              width: 40,
-              height: 40,
-              // @ts-expect-error placeholder is not in the types
-              placeholder: "blur",
-            }}
-            src={logoUrl}
-            alt={altText}
-          />
+          <Avatar color="accent" className="bg-white ring-2 ring-accent/30">
+            <Avatar.Image
+              src={logoUrl}
+              alt={altText}
+              className="object-contain"
+            />
+            <Avatar.Fallback>{altText[0]}</Avatar.Fallback>
+          </Avatar>
         </div>
         <div className="flex-grow ml-4 items-center flex-col group">
           <CardHeader>
@@ -69,13 +63,13 @@ export const ResumeCard = ({
               <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm gap-2">
                 {title}
                 {badges && (
-                  <span className="inline-flex gap-x-1">
+                  <span className="inline-flex gap-x-2">
                     {badges.map((badge, index) => (
                       <Chip
-                        variant="bordered"
+                        variant="primary"
                         size="sm"
-                        color="primary"
-                        className="align-middle text-xs"
+                        color="default"
+                        className="text-xs"
                         key={index}
                       >
                         {badge}
@@ -103,7 +97,7 @@ export const ResumeCard = ({
             )}
           </CardHeader>
           {description && (
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: isExpanded ? 1 : 0,
@@ -117,7 +111,7 @@ export const ResumeCard = ({
               className="mt-2 text-xs sm:text-sm"
             >
               {description}
-            </motion.div>
+            </MotionDiv>
           )}
         </div>
       </Card>

@@ -3,19 +3,18 @@
 import {
   Accordion,
   AccordionItem,
-  type ListboxProps,
-  type ListboxSectionProps,
+  type ListBoxRootProps,
   type Selection,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import React from "react";
 import {
-  Listbox,
+  ListBox,
   Tooltip,
-  ListboxItem,
-  ListboxSection,
-} from "@nextui-org/react";
+  ListBoxItem,
+  ListBoxSection,
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { cn } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 
 export enum SidebarItemType {
   Nest = "nest",
@@ -33,18 +32,18 @@ export type SidebarItem = {
   className?: string;
 };
 
-export type SidebarProps = Omit<ListboxProps<SidebarItem>, "children"> & {
+export type SidebarProps = Omit<ListBoxRootProps<SidebarItem>, "children"> & {
   items: SidebarItem[];
   isCompact?: boolean;
   hideEndContent?: boolean;
   iconClassName?: string;
-  sectionClasses?: ListboxSectionProps["classNames"];
-  classNames?: ListboxProps["classNames"];
+  sectionClasses?: Record<string, string>;
+  classNames?: Record<string, string>;
   defaultSelectedKey: string;
   onSelect?: (key: string) => void;
 };
 
-const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
+const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
   (
     {
       items,
@@ -53,7 +52,6 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       onSelect,
       hideEndContent,
       sectionClasses: sectionClassesProp = {},
-      itemClasses: itemClassesProp = {},
       iconClassName,
       classNames,
       className,
@@ -77,12 +75,12 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       }),
     };
 
-    const itemClasses = {
-      ...itemClassesProp,
-      base: cn(itemClassesProp?.base, {
+    const itemBaseClass = cn(
+      "px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-default-100",
+      {
         "w-11 h-11 gap-0 p-0": isCompact,
-      }),
-    };
+      }
+    );
 
     const renderNestItem = React.useCallback(
       (item: SidebarItem) => {
@@ -92,48 +90,44 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           item?.type === SidebarItemType.Nest;
 
         if (isNestType) {
-          // Is a nest type item , so we need to remove the href
           delete item.href;
         }
 
         return (
-          <ListboxItem
-            {...item}
+          <ListBoxItem
             key={item.key}
-            classNames={{
-              base: cn(
-                {
-                  "h-auto p-0": !isCompact && isNestType,
-                },
-                {
-                  "inline-block w-11": isCompact && isNestType,
-                }
-              ),
-            }}
-            endContent={
-              isCompact || isNestType || hideEndContent
-                ? null
-                : item.endContent ?? null
-            }
-            startContent={
-              isCompact || isNestType ? null : item.icon ? (
-                <Icon
-                  className={cn(
-                    "text-default-500 group-data-[selected=true]:text-foreground",
-                    iconClassName
-                  )}
-                  icon={item.icon}
-                  width={24}
-                />
-              ) : (
-                item.startContent ?? null
-              )
-            }
-            title={isCompact || isNestType ? null : item.title}
+            id={item.key}
+            className={cn(itemBaseClass, {
+              "h-auto p-0": !isCompact && isNestType,
+              "inline-block w-11": isCompact && isNestType,
+            })}
+            textValue={item.title}
           >
             {isCompact ? (
-              <Tooltip content={item.title} placement="right">
-                <div className="flex w-full items-center justify-center">
+              <Tooltip>
+                <Tooltip.Trigger>
+                  <div className="flex w-full items-center justify-center">
+                    {item.icon ? (
+                      <Icon
+                        className={cn(
+                          "text-default-500 group-data-[selected=true]:text-foreground",
+                          iconClassName
+                        )}
+                        icon={item.icon}
+                        width={24}
+                      />
+                    ) : (
+                      item.startContent ?? null
+                    )}
+                  </div>
+                </Tooltip.Trigger>
+                <Tooltip.Content placement="right">
+                  {item.title}
+                </Tooltip.Content>
+              </Tooltip>
+            ) : (
+              !isNestType && (
+                <div className="flex items-center gap-2">
                   {item.icon ? (
                     <Icon
                       className={cn(
@@ -146,59 +140,61 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   ) : (
                     item.startContent ?? null
                   )}
+                  <span className="text-small font-medium text-default-500 group-data-[selected=true]:text-foreground">
+                    {item.title}
+                  </span>
+                  {!hideEndContent && item.endContent ? (
+                    <span className="ml-auto">{item.endContent}</span>
+                  ) : null}
                 </div>
-              </Tooltip>
-            ) : null}
+              )
+            )}
             {!isCompact && isNestType ? (
               <Accordion className={"p-0"}>
                 <AccordionItem
                   key={item.key}
+                  id={item.key}
                   aria-label={item.title}
-                  classNames={{
-                    heading: "pr-3",
-                    trigger: "p-0",
-                    content: "py-0 pl-4",
-                  }}
-                  title={
-                    item.icon ? (
-                      <div
-                        className={"flex h-11 items-center gap-2 px-2 py-1.5"}
-                      >
-                        <Icon
-                          className={cn(
-                            "text-default-500 group-data-[selected=true]:text-foreground",
-                            iconClassName
-                          )}
-                          icon={item.icon}
-                          width={24}
-                        />
-                        <span className="text-small font-medium text-default-500 group-data-[selected=true]:text-foreground">
-                          {item.title}
-                        </span>
-                      </div>
-                    ) : (
-                      item.startContent ?? null
-                    )
-                  }
                 >
-                  {item.items && item.items?.length > 0 ? (
-                    <Listbox
-                      className={"mt-0.5"}
-                      classNames={{
-                        list: cn("border-l border-default-200 pl-4"),
-                      }}
-                      items={item.items}
-                      variant="flat"
-                    >
-                      {item.items.map(renderItem)}
-                    </Listbox>
-                  ) : (
-                    renderItem(item)
-                  )}
+                  <Accordion.Heading className="pr-3">
+                    <Accordion.Trigger className="p-0">
+                      {item.icon ? (
+                        <div
+                          className={"flex h-11 items-center gap-2 px-2 py-1.5"}
+                        >
+                          <Icon
+                            className={cn(
+                              "text-default-500 group-data-[selected=true]:text-foreground",
+                              iconClassName
+                            )}
+                            icon={item.icon}
+                            width={24}
+                          />
+                          <span className="text-small font-medium text-default-500 group-data-[selected=true]:text-foreground">
+                            {item.title}
+                          </span>
+                        </div>
+                      ) : (
+                        item.startContent ?? null
+                      )}
+                    </Accordion.Trigger>
+                  </Accordion.Heading>
+                  <Accordion.Panel className="py-0 pl-4">
+                    {item.items && item.items?.length > 0 ? (
+                      <ListBox
+                        className={"mt-0.5 [&>ul]:border-l [&>ul]:border-default-200 [&>ul]:pl-4"}
+                        items={item.items}
+                      >
+                        {item.items.map(renderItem)}
+                      </ListBox>
+                    ) : (
+                      renderItem(item)
+                    )}
+                  </Accordion.Panel>
                 </AccordionItem>
               </Accordion>
             ) : null}
-          </ListboxItem>
+          </ListBoxItem>
         );
       },
 
@@ -218,96 +214,85 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         }
 
         return (
-          <ListboxItem
-            {...item}
+          <ListBoxItem
             key={item.key}
-            as="div"
+            id={item.key}
+            className={itemBaseClass}
             onPress={() => {
               document.querySelector(item.href!)?.scrollIntoView({
                 behavior: "smooth",
               });
             }}
-            endContent={
-              isCompact || hideEndContent ? null : item.endContent ?? null
-            }
-            startContent={
-              isCompact ? null : item.icon ? (
-                <Icon
-                  className={cn(
-                    "text-default-500 group-data-[selected=true]:text-foreground",
-                    iconClassName
-                  )}
-                  icon={item.icon}
-                  width={24}
-                />
-              ) : (
-                item.startContent ?? null
-              )
-            }
             textValue={item.title}
-            title={isCompact ? null : item.title}
           >
             {isCompact ? (
-              <Tooltip content={item.title} placement="right">
-                <div className="flex w-full items-center justify-center">
-                  {item.icon ? (
-                    <Icon
-                      className={cn(
-                        "text-default-500 group-data-[selected=true]:text-foreground",
-                        iconClassName
-                      )}
-                      icon={item.icon}
-                      width={24}
-                    />
-                  ) : (
-                    item.startContent ?? null
-                  )}
-                </div>
+              <Tooltip>
+                <Tooltip.Trigger>
+                  <div className="flex w-full items-center justify-center">
+                    {item.icon ? (
+                      <Icon
+                        className={cn(
+                          "text-default-500 group-data-[selected=true]:text-foreground",
+                          iconClassName
+                        )}
+                        icon={item.icon}
+                        width={24}
+                      />
+                    ) : (
+                      item.startContent ?? null
+                    )}
+                  </div>
+                </Tooltip.Trigger>
+                <Tooltip.Content placement="right">
+                  {item.title}
+                </Tooltip.Content>
               </Tooltip>
-            ) : null}
-          </ListboxItem>
+            ) : (
+              <div className="flex items-center gap-2">
+                {item.icon ? (
+                  <Icon
+                    className={cn(
+                      "text-default-500 group-data-[selected=true]:text-foreground",
+                      iconClassName
+                    )}
+                    icon={item.icon}
+                    width={24}
+                  />
+                ) : (
+                  item.startContent ?? null
+                )}
+                <span className="text-small font-medium text-default-500 group-data-[selected=true]:text-foreground">
+                  {item.title}
+                </span>
+                {!hideEndContent && item.endContent ? (
+                  <span className="ml-auto">{item.endContent}</span>
+                ) : null}
+              </div>
+            )}
+          </ListBoxItem>
         );
       },
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      [isCompact, hideEndContent, iconClassName, itemClasses?.base]
+      [isCompact, hideEndContent, iconClassName, itemBaseClass]
     );
 
     return (
-      <Listbox
+      <ListBox
         key={isCompact ? "compact" : "default"}
         ref={ref}
-        hideSelectedIcon
-        as="nav"
         aria-label="Navigation sidebar"
         className={cn("list-none", className)}
-        classNames={{
-          ...classNames,
-          list: cn("items-center", classNames?.list),
-        }}
-        color="default"
-        itemClasses={{
-          ...itemClasses,
-          base: cn(
-            "px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-default-100",
-            itemClasses?.base
-          ),
-          title: cn(
-            "text-small font-medium text-default-500 group-data-[selected=true]:text-foreground",
-            itemClasses?.title
-          ),
-        }}
         items={items}
         selectedKeys={[selected] as unknown as Selection}
         selectionMode="single"
-        variant="flat"
+        variant="default"
         onSelectionChange={(keys) => {
           const key = Array.from(keys)[0];
 
           setSelected(key as React.Key);
           onSelect?.(key as string);
         }}
-        {...props}
       >
         {(item) => {
           return item.items &&
@@ -315,19 +300,17 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             item?.type === SidebarItemType.Nest ? (
             renderNestItem(item)
           ) : item.items && item.items?.length > 0 ? (
-            <ListboxSection
-              key={item.key}
-              classNames={sectionClasses}
-              showDivider={isCompact}
-              title={item.title}
-            >
+            <ListBoxSection key={item.key} className={cn(sectionClasses.base)}>
+              <span className={cn(sectionClasses.heading, "text-xs font-semibold text-default-500 px-3")}>
+                {item.title}
+              </span>
               {item.items.map(renderItem)}
-            </ListboxSection>
+            </ListBoxSection>
           ) : (
             renderItem(item)
           );
         }}
-      </Listbox>
+      </ListBox>
     );
   }
 );

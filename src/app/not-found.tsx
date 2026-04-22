@@ -1,8 +1,9 @@
 import BlurFadeText, {
   BLUR_FADE_DELAY,
 } from "@/components/magicui/blur-fade-text";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import Link from "next/link";
+
 
 export default function NotFound() {
   return (
@@ -23,15 +24,14 @@ export default function NotFound() {
                 "It seems you've lost your way. Let's get you back on track."
               }
             />
-            <Button
-              className="max-w-[300px]"
-              color="primary"
-              variant="shadow"
-              href="/"
-              as={Link}
-            >
-              Return to home page
-            </Button>
+            <Link href="/">
+              <Button
+                className="max-w-[300px]"
+                variant="primary"
+              >
+                Return to home page
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

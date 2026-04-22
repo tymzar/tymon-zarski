@@ -1,9 +1,8 @@
 "use client";
 
 import { useDarkMode, useMediaQuery } from "usehooks-ts";
-import { cn } from "@nextui-org/react";
-import { useTheme } from "next-themes";
-import { useEffect } from "react";
+import { cn } from "@heroui/react";
+import { useEffect, useCallback, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { UmamiIdentifier } from "./umami-identifier";
 
@@ -18,19 +17,25 @@ const DynamicTableOfContents = dynamic(() =>
 
 export function LayoutHandler({ children }: MainContentProps) {
   const matches = useMediaQuery("(min-width: 1024px)", { defaultValue: true });
-  const { setTheme } = useTheme();
   const { isDarkMode } = useDarkMode({
     defaultValue: true,
   });
 
+  const applyTheme = useCallback((theme: string) => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("heroui-theme", theme);
+  }, []);
+
   useEffect(() => {
-    setTheme(isDarkMode ? "dark" : "light");
+    applyTheme(isDarkMode ? "dark" : "light");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <UmamiIdentifier />
+      <Suspense fallback={null}><UmamiIdentifier /></Suspense>
       <div className="grid grid-cols-8 gap-4">
         {!matches ? <DynamicNavbar /> : null}
         {matches ? (

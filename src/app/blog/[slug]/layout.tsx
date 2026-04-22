@@ -1,6 +1,6 @@
 "use server";
 
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { getPostBySlug, getSortedPostsData } from "@/utils/gatherPosts";
@@ -42,17 +42,16 @@ export default async function Layout({
           />
         </div>
         {/* return to blogs */}
-        <Button
-          as={Link}
-          className="text-tiny"
-          color="primary"
-          radius="full"
-          size="sm"
-          startContent={<Icon icon="akar-icons:arrow-left" />}
-          href="/blog"
-        >
-          All blog posts
-        </Button>
+        <Link href="/blog">
+          <Button
+            className="text-tiny rounded-full"
+            variant="primary"
+            size="sm"
+          >
+            <Icon icon="akar-icons:arrow-left" />
+            All blog posts
+          </Button>
+        </Link>
       </header>
       <main className="flex flex-col h-full w-full py-8">{children}</main>
     </div>
