@@ -6,7 +6,6 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { PropsWithChildren, useRef } from "react";
 
 // framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MotionDiv = motion.div as React.ComponentType<any>;
 
 export interface DockProps extends VariantProps<typeof dockVariants> {
@@ -66,7 +65,6 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 Dock.displayName = "Dock";
 
 export interface DockIconProps {
-  size?: number;
   magnification?: number;
   distance?: number;
   mousex?: any;
@@ -76,7 +74,6 @@ export interface DockIconProps {
 }
 
 const DockIcon = ({
-  size,
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,
   mousex,

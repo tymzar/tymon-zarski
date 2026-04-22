@@ -1,7 +1,6 @@
 "use client";
 
 import BlurFade from "./magicui/blur-fade";
-import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Chip, Input, TextArea } from "@heroui/react";
 import { useRouter } from "next/navigation";

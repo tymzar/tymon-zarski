@@ -5,9 +5,6 @@ import Markdown from "react-markdown";
 import { DesktopMockup } from "./magicui/desktop-mockup";
 import {
   Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
   Chip,
   cn,
   Separator,

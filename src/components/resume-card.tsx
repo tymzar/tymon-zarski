@@ -5,7 +5,6 @@ import { Avatar, Chip, cn } from "@heroui/react";
 import { motion } from "framer-motion";
 
 // framer-motion 11.x types are incompatible with React 19 — cast to avoid build errors
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MotionDiv = motion.div as React.ComponentType<any>;
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
